@@ -19,9 +19,20 @@ emailClient.configureSendgrid("venn-email", "Password123", 2);
 
 // send an email
 emailClient.send("to@email.com", "Subject 123", "How you doin", function(err, result){
-	console.info("done");
+	// email successfully sent if !err
 });
 ```
+
+##### Run Example
+```
+node examples/example.js
+```
+
+##### Run Example (with debug logging)
+```
+DEBUG=venn-email node examples/example.js
+```
+
 
 
 ## API
