@@ -1,0 +1,25 @@
+{
+  "name": "venn-email-node",
+  "version": "0.0.1",
+  "description": "Venn Email Redundancy Package",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VennHQ/venn-email-node.git"
+  },
+  "author": "Tim Giblin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/VennHQ/venn-email-node/issues"
+  },
+  "homepage": "https://github.com/VennHQ/venn-email-node",
+  "dependencies": {
+    "async": "^0.9.0",
+    "mandrill-api": "^1.0.41",
+    "sendgrid": "^1.6.0",
+    "underscore": "^1.8.2"
+  }
+}
