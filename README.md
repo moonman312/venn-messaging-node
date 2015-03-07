@@ -10,12 +10,14 @@ npm install venn-email
 ```js
 emailClient = require("venn-email");
 
+// set default from address for all emails sent
 emailClient.setDefaultFrom("from@email.com");
 // set as primary email provider
 emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 1);
 // set as secodary email provider (since 1 < 2)
 emailClient.configureSendgrid("venn-email", "Password123", 2);
 
+// send an email
 emailClient.send("to@email.com", "Subject 123", "How you doin", function(err, result){
 	console.info("done");
 });
