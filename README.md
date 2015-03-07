@@ -7,7 +7,6 @@ npm install venn-email
 
 ## Example
 ```
-EmailClient = require("venn-email");
 emailClient = new EmailClient();
 
 emailClient.setFrom("from@email.com");
