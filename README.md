@@ -13,7 +13,7 @@ emailClient.setFrom("from@email.com");
 emailClient.configureSendgrid("venn-email", "Password123", 3);
 emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 2);
 
-emailClient.send("timmyg13@gmail.com", "subj", "msg", function(err, result){
+emailClient.send("to@email.com", "Subject 123", "How you doin", function(err, result){
 	console.info("done");
 });
 ```
@@ -46,7 +46,7 @@ emailClient.send("timmyg13@gmail.com", "subj", "msg", function(err, result){
 |---------------| ----   |   --------------------------- | ------------     |
 |to             | String |   to email address      | "to@email.com"          |
 |subject        | String |   email subject         | Subject 123             |
-|message        | String |   email message         | Hey yo what up          |
+|message        | String |   email message         | How you doin          |
 
 
 
