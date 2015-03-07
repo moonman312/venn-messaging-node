@@ -3,7 +3,6 @@ var h, sendgridService, v;
 sendgridService = {};
 
 sendgridService.sendEmail = function(keys, from, to, subject, message, callback) {
-  console.log(keys);
   var sendgrid = require('sendgrid')(keys.required.api_user, keys.required.api_key);
   return sendgrid.send({
     to: to,
