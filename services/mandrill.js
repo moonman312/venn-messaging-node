@@ -1,5 +1,6 @@
 var h, mandrill, mandrillService, v;
-
+var debug = require('debug')('email');
+var _ = require("underscore");
 mandrillService = {};
 
 mandrill = require('mandrill-api/mandrill');
@@ -23,14 +24,14 @@ mandrillService.sendEmail = function(keys, from, to, subject, message, callback)
   }, (function(result) {
     isSent = _.indexOf(["sent", "queued", "scheduled"], result[0].status) > -1
     if(isSent){
-      console.info("-_-_ sent with mandrill _-_-");
+      debug("-_-_ sent with mandrill _-_-");
       return callback(null, result);
     } else {
-      console.info("-_-_ FAILED with mandrill _-_-");
+      debug("-_-_ FAILED with mandrill _-_-");
       return callback(result);
     }
   }), function(e) {
-    console.info("-_-_ FAILED with mandrill _-_-");
+    debug("-_-_ FAILED with mandrill _-_-");
     console.error(e);
     return callback(e);
   });

@@ -1,9 +1,10 @@
-emailClient = require("../lib/index");
+var debug = require('debug')('email');
+var emailClient = require("../lib/index");
 
-emailClient.setFrom("from@email.com");
-emailClient.configureSendgrid("venn-email", "Password123", 3);
-emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 2);
+emailClient.setDefaultFrom("from@email.com");
+emailClient.configureSendgrid("venn-email", "Password123", 2);
+emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 1);
 
 emailClient.send("timmyg13@gmail.com", "subj", "msg", function(err, result){
-	// console.info("done");
+	debug("done");
 });

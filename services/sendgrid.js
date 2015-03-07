@@ -1,5 +1,5 @@
 var h, sendgridService, v;
-
+var debug = require('debug')('email');
 sendgridService = {};
 
 sendgridService.sendEmail = function(keys, from, to, subject, message, callback) {
@@ -11,10 +11,10 @@ sendgridService.sendEmail = function(keys, from, to, subject, message, callback)
     text: message
   }, function(err, result) {
     if (err) {
-      console.info("-_-_ FAILED with sendgrid _-_-");
+      debug("-_-_ FAILED with sendgrid _-_-");
       return callback(err);
     } else {
-      console.info("-_-_ sent with sendgrid _-_-");
+      debug("-_-_ sent with sendgrid _-_-");
       return callback(null, result);
     }
   });
