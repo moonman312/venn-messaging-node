@@ -1,5 +1,5 @@
 # Venn Email
-Build in a redundant email service seamlessly. If your email provider goes down, we fall back to a secondary service. If you want to switch providers, it's just change their priority.
+Build in a redundant email service seamlessly. If your email provider goes down, it'll fall back to a secondary service. If you want to switch providers, just change their priority parameter.
 
 ## Install
 ```
