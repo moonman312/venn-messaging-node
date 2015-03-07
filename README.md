@@ -10,7 +10,7 @@ npm install venn-email
 ```
 emailClient = require("venn-places");
 
-emailClient.setFrom("from@email.com");
+emailClient.setDefaultFrom("from@email.com");
 // set as primary email provider
 emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 1);
 // set as secodary email provider (since 1 < 2)
@@ -25,7 +25,7 @@ emailClient.send("to@email.com", "Subject 123", "How you doin", function(err, re
 ## API
 
 #### Initializing
-###### setFrom(email)
+###### setDefaultFrom(email)
 |params         | type   |    description                | example          |
 |---------------| ----   |   --------------------------- | ------------     |
 |email          | String |    default from email address | bob@email.com    |
