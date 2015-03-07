@@ -4,13 +4,13 @@ mandrillService = {};
 
 mandrill = require('mandrill-api/mandrill');
 
-mandrillService.sendEmail = function(from, to, subject, message, callback) {
+mandrillService.sendEmail = function(keys, from, to, subject, message, callback) {
   var mandrillMessage, mandrill_client;
-  mandrill_client = new mandrill.Mandrill('aNdLxLa4xFG4JR-wpeMklw');
+  mandrill_client = new mandrill.Mandrill(keys.required.api_key);
   mandrillMessage = {
     'html': message,
     'subject': subject,
-    // 'from_email': from,
+    'from_email': from,
     'to': [
       {
         'email': to,
