@@ -41,7 +41,7 @@ emailClient.send("timmyg13@gmail.com", "subj", "msg", function(err, result){
 |priority       | Number |   service priority  | 1                          |
 
 #### Use
-###### configureMandrill(api_key, priority)
+###### send(api_key, priority)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |to             | String |   to email address      | "to@email.com"          |
