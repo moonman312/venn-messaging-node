@@ -1,4 +1,5 @@
 var debug = require('debug')('email');
+
 var emailClient = require("../lib/index");
 
 emailClient.setDefaultFrom("from@email.com");
