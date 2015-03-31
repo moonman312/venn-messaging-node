@@ -8,17 +8,13 @@ npm install venn-email
 
 ## Example
 ```js
-emailClient = require("venn-email");
+email = require("venn-email");
 
-// set default from address for all emails sent
-emailClient.setDefaultFrom("from@email.com");
-// set as primary email provider
-emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 1);
-// set as secodary email provider (since 1 < 2)
-emailClient.configureSendgrid("venn-email", "Password123", 2);
+// initalize with your Venn API Key
+email.initialize(VENN_API_KEY)
 
 // send an email
-emailClient.send("to@email.com", "Subject 123", "How you doin", function(err, result){
+email.send("to@email.com", "Subject 123", "How you doin", function(err, result){
 	// email successfully sent if !err
 });
 ```
@@ -38,28 +34,16 @@ DEBUG=venn-email node examples/example.js
 ## API
 
 #### Initializing
-###### setDefaultFrom(email)
-|params         | type   |    description                | example          |
-|---------------| ----   |   --------------------------- | ------------     |
-|email          | String |    default from email address | bob@email.com    |
-
-###### configureSendgrid(api_user, api_key, priority)
-|params         | type   |    description       | example          |
-|---------------| ----   |   ------------------ | ------------     |
-|api_user       | String |   sendgrid user id   | "venn-email"     |
-|api_key        | String |   sendgrid password  | "Password123"    |
-|priority       | Number |   service priority   | 2                |
-
-###### configureMandrill(api_key, priority)
-|params         | type   |    description      | example                    |
-|---------------| ----   |   ----------------- | ------------               |
-|api_key        | String |   mandrill api key  | "aNdLxLa4xFG4JR-wpeMklw"   |
-|priority       | Number |   service priority  | 1                          |
 
 #### Use
-###### send(to, subject, message)
+###### initalize(api_key)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
+|api_key        | String |   Venn API Key    | api_key         |
+###### send(from, to, subject, message)
+|params         | type   |    description      | example                    |
+|---------------| ----   |   --------------------------- | ------------     |
+|from           | String |   from email address    | from@email.com         |
 |to             | String |   to email address      | to@email.com           |
 |subject        | String |   email subject         | Subject 123            |
 |message        | String |   email message         | How you doin           |
