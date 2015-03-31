@@ -8,11 +8,11 @@ Build in a redundant email service seamlessly. If your email provider goes down,
 npm install venn-email
 ```
 ### Functions
-##### initalize(api_key)
+##### initalize(api_key, callback)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |api_key        | String |   Venn API Key    | 64d2fa24h3f6f7cc61asp3e8         |
-##### send(from, to, subject, message)
+##### send(from, to, subject, message, callback)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |from           | String |   from email address    | from@email.com         |
