@@ -1,11 +1,7 @@
 var debug = require('debug')('email');
-
 var emailClient = require("../lib/index");
 
-emailClient.setDefaultFrom("from@email.com");
-emailClient.configureSendgrid("venn-email", "Password123", 2);
-emailClient.configureMandrill("aNdLxLa4xFG4JR-wpeMklw", 1);
-
-emailClient.send("test@email.com", "subj", "msg", function(err, result){
-	debug("done");
-});
+emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8").then(function(){
+	emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+	})
+})

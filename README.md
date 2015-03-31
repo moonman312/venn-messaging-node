@@ -26,7 +26,7 @@ node examples/example.js
 
 ##### Run Example (with debug logging)
 ```
-DEBUG=venn-email node examples/example.js
+DEBUG=email node examples/example.js
 ```
 
 
@@ -39,7 +39,7 @@ DEBUG=venn-email node examples/example.js
 ###### initalize(api_key)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
-|api_key        | String |   Venn API Key    | api_key         |
+|api_key        | String |   Venn API Key    | 64d2fa24h3f6f7cc61asp3e8         |
 ###### send(from, to, subject, message)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
