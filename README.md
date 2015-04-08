@@ -35,6 +35,11 @@ email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", func
 
 #Development
 
+##### install dependencies
+```
+npm install
+```
+
 ##### Run Example
 ```
 node examples/example.js
