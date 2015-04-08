@@ -25,10 +25,9 @@ npm install venn-email
 email = require("venn-email");
 
 // initialize and send an email
-email.initialize(VENN_API_KEY).then(function(){
-	email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", function(err, result){
-		// email successfully sent if !err
-	})
+email.initialize(VENN_API_KEY)
+email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", function(err, result){
+	// email successfully sent if !err
 })
 ```
 

@@ -29,11 +29,10 @@ describe('sending an email', function(){
 			nock('https://api.sendgrid.com/api')
 				.post('/mail.send.json')
 				.reply(200, {"message": "success"});
-			emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8").then(function(){
-				emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
-					assert.equal(result, "sendgrid");
-					done()
-				})
+			emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8")
+			emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+				assert.equal(result, "sendgrid");
+				done()
 			})
 		})
 
@@ -47,11 +46,10 @@ describe('sending an email', function(){
 			nock('https://api.sendgrid.com/api')
 				.post('/mail.send.json')
 				.reply(500, {});
-			emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8").then(function(){
-				emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
-					assert.equal(result, "mandrill");
-					done()
-				})
+			emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8")
+			emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+				assert.equal(result, "mandrill");
+				done()
 			})
 		})
 	})

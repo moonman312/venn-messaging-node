@@ -26,11 +26,10 @@ describe('when services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "mandrill", "sendgrid"]);
 
-		emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8").then(function(){
-			emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
-				assert.equal(result, "mandrill");
-				done()
-			})
+		emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8")
+		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+			assert.equal(result, "mandrill");
+			done()
 		})
 	})
 
@@ -55,11 +54,10 @@ describe('when services up', function(){
 		nock('http://api.getvenn.io/v1')
 			.get('/priority?type=email')
 			.reply(200, [ "sendgrid", "mandrill" ]);
-		emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8").then(function(){
-			emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
-				assert.equal(result, "sendgrid");
-				done()
-			})
+		emailClient.initialize("64d2fa2b73f6f7cc61a4b3e8")
+		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+			assert.equal(result, "sendgrid");
+			done()
 		})
 	})
 })
