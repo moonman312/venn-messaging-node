@@ -1,7 +1,6 @@
 var assert = require("assert")
 var nock = require("nock")
 var emailClient = require("../lib/index");
-var env = process.env
 
 describe('when services up', function(){
 

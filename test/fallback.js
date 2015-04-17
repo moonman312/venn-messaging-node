@@ -12,7 +12,7 @@ describe('sending an email', function(){
 				"api_key": process.env.SENDGRID_API_KEY
 			},
 			"mandrill": {
-				"api_key": env.MANDRILL_API_KEY
+				"api_key": process.env.MANDRILL_API_KEY
 			}
 		});
 

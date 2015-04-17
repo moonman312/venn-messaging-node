@@ -7,6 +7,13 @@ Build in a redundant email service seamlessly. If your email provider goes down,
 ```bash
 npm install venn-email
 ```
+
+### Export api keys
+```bash
+export SENDGRID_API_USER=""
+export SENDGRID_API_KEY=""
+export MANDRILL_API_KEY=""
+```
 ### Functions
 ##### initialize(api_key, callback)
 |params         | type   |    description      | example                    |
