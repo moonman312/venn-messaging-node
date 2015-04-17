@@ -1,6 +1,7 @@
 var assert = require("assert")
 var nock = require("nock")
 var emailClient = require("../lib/index");
+var env = process.env
 
 describe('when services up', function(){
 
@@ -9,11 +10,11 @@ describe('when services up', function(){
 			.get('/keys?type=email')
 			.reply(200, {
 				"sendgrid": {
-					"api_user": "venn-email2",
-					"api_key": "Password123"
+					"api_user": process.env.SENDGRID_API_USER,
+					"api_key": process.env.SENDGRID_API_KEY
 				},
 				"mandrill": {
-					"api_key": "aNdLxLa4xFG4JR-wpeMklw"
+					"api_key": process.env.MANDRILL_API_KEY
 				}
 			});
 		nock('https://mandrillapp.com/api/1.0')

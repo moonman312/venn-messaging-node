@@ -8,11 +8,11 @@ describe('sending an email', function(){
 		.get('/keys?type=email')
 		.reply(200, {
 			"sendgrid": {
-				"api_user": "venn-email2",
-				"api_key": "Password123"
+				"api_user": process.env.SENDGRID_API_USER,
+				"api_key": process.env.SENDGRID_API_KEY
 			},
 			"mandrill": {
-				"api_key": "aNdLxLa4xFG4JR-wpeMklw"
+				"api_key": env.MANDRILL_API_KEY
 			}
 		});
 
