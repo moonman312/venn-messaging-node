@@ -1,6 +1,6 @@
 {
   "name": "venn-email",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Venn Email Redundancy Package",
   "main": "lib/index.js",
   "scripts": {
