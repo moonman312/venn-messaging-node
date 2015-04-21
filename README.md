@@ -1,4 +1,6 @@
 # Venn Email
+[ ![Codeship Status for VennHQ/venn-email-node](https://codeship.com/projects/40a5efb0-c00d-0132-200e-021ec7688aff/status?branch=master)](https://codeship.com/projects/73117)
+
 Build in a redundant email service seamlessly. If your email provider goes down, it'll fall back to a secondary service. If you want to switch providers, just change their priority parameter.
 
 # Use
@@ -8,12 +10,6 @@ Build in a redundant email service seamlessly. If your email provider goes down,
 npm install venn-email
 ```
 
-### Export api keys
-```bash
-export SENDGRID_API_USER=""
-export SENDGRID_API_KEY=""
-export MANDRILL_API_KEY=""
-```
 ### Functions
 ##### initialize(api_key, callback)
 |params         | type   |    description      | example                    |
@@ -58,7 +54,12 @@ DEBUG=email node examples/example.js
 ```
 
 ##### Run Tests
-```
+###### Export api keys
+```bash
+export SENDGRID_API_USER=""
+export SENDGRID_API_KEY=""
+export MANDRILL_API_KEY=""
+
 mocha
 ```
 
