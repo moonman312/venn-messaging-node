@@ -38,6 +38,13 @@ email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", func
 
 #Development
 
+##### adding a new email provider
+* write failing tests
+* add service to lib/models/providers (copy an existing provider)
+	* change initialize and send functions to service specific way of doing so
+* edit email_client.js and require lib/models/providers/[newservice].js
+	* then add it in the configureServices
+
 ##### install dependencies
 ```
 npm install
@@ -50,6 +57,7 @@ node examples/example.js
 
 ##### Run Example (with debug logging)
 ```
+export VENN_API_KEY=""
 DEBUG=email node examples/example.js
 ```
 
