@@ -5,15 +5,16 @@ var emailClient = require("../lib/index");
 describe('when services up', function(){
 
 	it('should send with mandrill suggested first', function(done){
+		nock.cleanAll()
 		nock('https://api.getvenn.io/v1')
 			.get('/keys?type=email')
 			.reply(200, {
 				"sendgrid": {
-					"api_user": process.env.SENDGRID_API_USER,
-					"api_key": process.env.SENDGRID_API_KEY
+					"api_user": "sldkfjdslkjf",
+					"api_key": "sldkfjdslkjf"
 				},
 				"mandrill": {
-					"api_key": process.env.MANDRILL_API_KEY
+					"api_key": "sldkfjdslkjf"
 				}
 			});
 		nock('https://mandrillapp.com/api/1.0')
@@ -26,7 +27,7 @@ describe('when services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "mandrill", "sendgrid"]);
 
-		emailClient.initialize(process.env.VENN_API_KEY)
+		emailClient.initialize()
 		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
 			assert.equal(result.service, "mandrill");
 			assert.equal(Object.keys(emailClient.services).length, 2);
