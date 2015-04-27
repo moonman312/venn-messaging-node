@@ -1,0 +1,14 @@
+{
+	"statusCode"    : 202,
+	"statusMessage" : "Messages accepted; delivery pending.",
+	"statusTime"    : "1971-01-01T00:00:00.000Z",
+	"successCount"  : 1,
+	"failureCount"  : 0,
+	"results" : [
+		{
+			"toEmail"       : "bob@hotmail.com",
+			"messageId"     : "AAAABBBBCCCCDDDDEEEEFFFF00001111",
+			"messageStatus" : 0
+		}
+	]
+}

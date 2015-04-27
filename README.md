@@ -41,7 +41,7 @@ email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", func
 ##### adding a new email provider
 * write failing tests
 * add service to lib/models/providers (copy an existing provider)
-	* change initialize and send functions to service specific way of doing so
+	* change initialize and send functions to service specific way of initializing client/sending message
 * edit email_client.js and require lib/models/providers/[newservice].js
 	* then add it in the configureServices
 

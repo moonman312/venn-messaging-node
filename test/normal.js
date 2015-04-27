@@ -4,7 +4,7 @@ var emailClient = require("../lib/index");
 
 describe('when services up', function(){
 
-	it('should send with mandrill suggested first', function(done){
+	it('should send with mandrill when suggested first', function(done){
 		nock.cleanAll()
 		nock('https://api.getvenn.io/v1')
 			.get('/keys?type=email')
@@ -28,14 +28,14 @@ describe('when services up', function(){
 			.reply(200, [ "mandrill", "sendgrid"]);
 
 		emailClient.initialize()
-		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
 			assert.equal(result.service, "mandrill");
 			assert.equal(Object.keys(emailClient.services).length, 2);
 			done()
 		})
 	})
 
-	it('should send with sendgrid suggested first', function(done){
+	it('should send with sendgrid when suggested first', function(done){
 	nock('https://api.getvenn.io/v1')
 		.get('/keys?type=email')
 		.reply(200, {
@@ -57,13 +57,13 @@ describe('when services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "sendgrid", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
 			assert.equal(result.service, "sendgrid");
 			done()
 		})
 	})
 
-	it('should send with mailgun suggested first', function(done){
+	it('should send with mailgun when suggested first', function(done){
 		nock('https://api.getvenn.io/v1')
 			.get('/keys?type=email')
 			.reply(200, {
@@ -95,8 +95,69 @@ describe('when services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "mailgun", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "timmyg13@gmail.com", "subject-1", "message-1", function(err, result){
+		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
 			assert.equal(result.service, "mailgun");
+			done()
+		})
+	})
+
+	it('should send with messagebus when suggested first', function(done){
+		nock('https://api.getvenn.io/v1')
+			.get('/keys?type=email')
+			.reply(200, {
+				"sendgrid": {
+					"api_user": process.env.SENDGRID_API_USER,
+					"api_key": process.env.SENDGRID_API_KEY
+				},
+				"mandrill": {
+					"api_key": process.env.MANDRILL_API_KEY
+				},
+				"mailgun": {
+					"api_key": process.env.MAILGUN_API_KEY,
+					"domain": process.env.MAILGUN_DOMAIN
+				},
+				"messagebus": {
+					"api_key": process.env.MAILGUN_API_KEY
+				}
+			});
+		nock('https://api.messagebus.com/v5').filteringRequestBody(/.*/, '*')
+			.post('/messages/send')
+			.reply(202, require("./fixtures/messagebus_response") );
+		nock('https://api.getvenn.io/v1')
+			.get('/priority?type=email')
+			.reply(200, [ "messagebus", "mandrill" ]);
+		emailClient.initialize(process.env.VENN_API_KEY)
+		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+			assert.equal(result.service, "messagebus");
+			done()
+		})
+	})
+
+
+	it('should send with postmark when suggested first', function(done){
+		nock('https://api.getvenn.io/v1')
+			.get('/keys?type=email')
+			.reply(200, {
+				"sendgrid": {
+					"api_user": process.env.SENDGRID_API_USER,
+					"api_key": process.env.SENDGRID_API_KEY
+				},
+				"postmark": {
+					"server_key": "123"
+				}
+			});
+		nock('https://api.messagebus.com/v5').filteringRequestBody(/.*/, '*')
+			.post('/messages/send')
+			.reply(202, require("./fixtures/messagebus_response") );
+		nock('https://api.postmarkapp.com').filteringRequestBody(/.*/, '*')
+			.post('/email')
+			.reply(200, {"message": "success"} );
+		nock('https://api.getvenn.io/v1')
+			.get('/priority?type=email')
+			.reply(200, [ "postmark", "messagebus" ]);
+		emailClient.initialize(process.env.VENN_API_KEY)
+		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+			assert.equal(result.service, "postmark");
 			done()
 		})
 	})

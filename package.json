@@ -1,6 +1,6 @@
 {
   "name": "venn-email",
-  "version": "0.3.3",
+  "version": "0.3.5",
   "description": "Venn Email Redundancy Package, including Mailgun, Sendgrid, and Mandrill",
   "main": "lib/index.js",
   "scripts": {
@@ -21,6 +21,8 @@
     "debug": "^2.1.2",
     "mailgun-js": "^0.6.9",
     "mandrill-api": "^1.0.41",
+    "messagebus": "^5.0.0",
+    "postmark": "^1.0.0",
     "promise": "^6.1.0",
     "q": "^1.2.0",
     "request": "^2.54.0",
@@ -28,6 +30,8 @@
     "underscore": "^1.8.2"
   },
   "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-bump": "^0.3.0",
     "mocha": "^2.2.1",
     "nock": "^1.4.0"
   }
