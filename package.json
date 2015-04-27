@@ -1,6 +1,6 @@
 {
   "name": "venn-email",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Venn Email Redundancy Package, including Mailgun, Sendgrid, and Mandrill",
   "main": "lib/index.js",
   "scripts": {
