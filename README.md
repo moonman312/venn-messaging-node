@@ -15,13 +15,13 @@ npm install venn-email
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |api_key        | String |   Venn API Key    | 64d2fa24h3f6f7cc61asp3e8         |
-##### send(from, to, subject, message, callback)
+##### send(data, callback)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
-|from           | String |   from email address    | from@email.com         |
-|to             | String |   to email address      | to@email.com           |
-|subject        | String |   email subject         | Subject 123            |
-|message        | String |   email message         | How you doin           |
+|data.from           | String |   from email address    | from@email.com         |
+|data.to             | String |   to email address      | to@email.com           |
+|data.subject        | String |   email subject         | Subject 123            |
+|data.message        | String |   email message         | How you doin           |
 
 ### Example
 ```js
@@ -29,7 +29,13 @@ email = require("venn-email");
 
 // initialize and send an email
 email.initialize(VENN_API_KEY)
-email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", function(err, result){
+var data = {
+	from: "from@email.com",
+	to: "to@email.com",
+	subject: "Subject 123",
+	message: "How you doin"
+}
+email.send(data, function(err, result){
 	// email successfully sent if !err
 })
 ```
@@ -65,10 +71,6 @@ DEBUG=email node examples/example.js
 ##### Run Tests
 ###### Export api keys
 ```bash
-export SENDGRID_API_USER=""
-export SENDGRID_API_KEY=""
-export MANDRILL_API_KEY=""
-
 mocha
 ```
 
