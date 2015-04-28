@@ -38,7 +38,7 @@ describe('sending an email', function(){
 				.post('/mail.send.json')
 				.reply(200, {"message": "success"});
 			emailClient.initialize(process.env.VENN_API_KEY)
-			emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+			emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 				assert.equal(result.service, "sendgrid");
 				done()
 			})
@@ -66,7 +66,7 @@ describe('sending an email', function(){
 				.post('/mail.send.json')
 				.reply(500, {});
 			emailClient.initialize(process.env.VENN_API_KEY)
-			emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+			emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 				assert.equal(result.service, "mandrill");
 				done()
 			})
@@ -99,7 +99,7 @@ describe('sending an email', function(){
 				.post('/messages')
 				.reply(200, {"message": "success"});
 			emailClient.initialize(process.env.VENN_API_KEY)
-			emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+			emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 				assert.equal(result.service, "mailgun");
 				done()
 			})

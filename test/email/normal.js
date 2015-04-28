@@ -28,7 +28,7 @@ describe('when email services up', function(){
 			.reply(200, [ "mandrill", "sendgrid"]);
 
 		emailClient.initialize()
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(result.service, "mandrill");
 			assert.equal(Object.keys(emailClient.services).length, 2);
 			done()
@@ -57,7 +57,7 @@ describe('when email services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "sendgrid", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(result.service, "sendgrid");
 			done()
 		})
@@ -95,7 +95,7 @@ describe('when email services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "mailgun", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(result.service, "mailgun");
 			done()
 		})
@@ -127,7 +127,7 @@ describe('when email services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "messagebus", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(result.service, "messagebus");
 			done()
 		})
@@ -156,7 +156,7 @@ describe('when email services up', function(){
 			.get('/priority?type=email')
 			.reply(200, [ "postmark", "messagebus" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(result.service, "postmark");
 			done()
 		})

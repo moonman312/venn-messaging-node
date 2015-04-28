@@ -27,7 +27,7 @@ describe('email should still send even if priority endpoint down', function(){
 			.get('/priority?type=email')
 			.reply(500, {});
 		emailClient.initialize(process.env.VENN_API_KEY)
-		emailClient.send("from@email.com", "testy@email.com", "subject-1", "message-1", function(err, result){
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.notEqual("not sent :(", result.service, "email sent successfully");
 			done()
 		})
