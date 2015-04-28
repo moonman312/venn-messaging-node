@@ -1,13 +1,13 @@
-var debug = require('debug')('email');
-var email = require("../lib/index");
+var debug = require('debug')('venn');
+var venn = require("../lib/index");
 
-email.initialize()
+venn.initialize()
 var data = {
-	from: "from@email.com",
-	to: "testy@email.com",
+	from: "from@venn.com",
+	to: "testy@venn.com",
 	subject: "subject-1",
 	message: "message-1"
 }
-email.send(data, function(err, result){
+venn.send(data, function(err, result){
 	console.info("send with:", result);
 })

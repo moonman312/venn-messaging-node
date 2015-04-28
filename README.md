@@ -1,44 +1,69 @@
 # Venn Email
 [ ![Codeship Status for VennHQ/venn-email-node](https://codeship.com/projects/40a5efb0-c00d-0132-200e-021ec7688aff/status?branch=master)](https://codeship.com/projects/73117)
 
-Build in a redundant email service seamlessly. If your email provider goes down, it'll fall back to a secondary service. If you want to switch providers, just change their priority parameter.
+Build in a redundant messaging service seamlessly. If your email, sms or push notification provider goes down, we'll fall back to a secondary service.
 
 # Use
 
 ### Install
 ```bash
-npm install venn-email
+npm install venn-messaging
 ```
 
-### Functions
+## Functions
 ##### initialize(api_key, callback)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |api_key        | String |   Venn API Key    | 64d2fa24h3f6f7cc61asp3e8         |
+#### Email Send
 ##### send(data, callback)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |data.from           | String |   from email address    | from@email.com         |
 |data.to             | String |   to email address      | to@email.com           |
 |data.subject        | String |   email subject         | Subject 123            |
-|data.message        | String |   email message         | How you doin           |
+|data.message        | String |   email message         | How you doin?          |
+#### SMS Send
+##### send(data, callback)
+|params         | type   |    description      | example                    |
+|---------------| ----   |   --------------------------- | ------------     |
+|data.from           | String |   from phone number    | +14354402246         |
+|data.to             | String |   to phone number      | +1633050227           |
+|data.message        | String |   text message         | How you doin?           |
 
-### Example
+### Email Example
 ```js
-email = require("venn-email");
+vennEmail = require("venn-messaging").Email;
 
 // initialize and send an email
-email.initialize(VENN_API_KEY)
+vennEmail.initialize(VENN_API_KEY)
 var data = {
 	from: "from@email.com",
 	to: "to@email.com",
 	subject: "Subject 123",
 	message: "How you doin"
 }
-email.send(data, function(err, result){
+vennEmail.send(data, function(err, result){
 	// email successfully sent if !err
 })
 ```
+
+### SMS Example
+```js
+vennSms = require("venn-messaging").SMS;
+
+// initialize and send an SMS
+vennSms.initialize(VENN_API_KEY)
+var data = {
+	from: "+14356650499",
+	to: "+14503350029",
+	message: "How you doin"
+}
+vennSms.send(data, function(err, result){
+	// email successfully sent if !err
+})
+```
+
 
 
 
