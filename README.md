@@ -44,6 +44,7 @@ email.send("from@email.com", "to@email.com", "Subject 123", "How you doin", func
 	* change initialize and send functions to service specific way of initializing client/sending message
 * edit email_client.js and require lib/models/providers/[newservice].js
 	* then add it in the configureServices
+* add api key validator to Venn API
 
 ##### install dependencies
 ```
