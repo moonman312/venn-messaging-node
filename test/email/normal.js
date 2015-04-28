@@ -1,8 +1,8 @@
 var assert = require("assert")
 var nock = require("nock")
-var emailClient = require("../lib/index");
+var emailClient = require("../../lib/index");
 
-describe('when services up', function(){
+describe('when email services up', function(){
 
 	it('should send with mandrill when suggested first', function(done){
 		nock.cleanAll()
@@ -122,7 +122,7 @@ describe('when services up', function(){
 			});
 		nock('https://api.messagebus.com/v5').filteringRequestBody(/.*/, '*')
 			.post('/messages/send')
-			.reply(202, require("./fixtures/messagebus_response") );
+			.reply(202, require("../fixtures/messagebus_response") );
 		nock('https://api.getvenn.io/v1')
 			.get('/priority?type=email')
 			.reply(200, [ "messagebus", "mandrill" ]);
@@ -148,7 +148,7 @@ describe('when services up', function(){
 			});
 		nock('https://api.messagebus.com/v5').filteringRequestBody(/.*/, '*')
 			.post('/messages/send')
-			.reply(202, require("./fixtures/messagebus_response") );
+			.reply(202, require("../fixtures/messagebus_response") );
 		nock('https://api.postmarkapp.com').filteringRequestBody(/.*/, '*')
 			.post('/email')
 			.reply(200, {"message": "success"} );
