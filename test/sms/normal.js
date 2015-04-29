@@ -48,9 +48,9 @@ describe('when sms services up', function(){
 				}
 			});
 		// nock.enableNetConnect('api.twilio.com');
-		// nock('https://rest.nexmo.com')
-		// 	.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
-		// 	.reply(200, {"message": "success"});
+		nock('https://rest.nexmo.com')
+			.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
+			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
 			.get('/priority?type=email')
 			.reply(200, ["nexmo", "twilio"]);

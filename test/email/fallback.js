@@ -3,7 +3,7 @@ var nock = require("nock")
 var emailClient = require("../../lib/index").Email;
 
 describe('sending an email', function(){
-
+	nock.cleanAll()
 	nock('https://api.getvenn.io/v1')
 		.get('/keys?type=email')
 		.reply(200, {
