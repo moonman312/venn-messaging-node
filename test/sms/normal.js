@@ -42,25 +42,15 @@ describe('when sms services up', function(){
 		nock('https://api.getvenn.io/v1')
 			.get('/keys?type=email')
 			.reply(200, {
-				"twilio": {
-					"account_sid": "sldkfjdslkjf",
-					"auth_token": "sldkfjdslkjf"
-				},
-				"nexmo": {
+				"parse": {
 					"api_key": "sldkfjdslkjf",
-					"api_secret": "sldkfjdslkjf"
+					"app_id": "sldkfjdslkjf"
 				}
 			});
 		// nock.enableNetConnect('api.twilio.com');
-		nock('https://api.twilio.com:443')
-			.post('/2010-04-01/Accounts/sldkfjdslkjf/Messages.json')
-			.reply(201, [{"status": "sent"}] );
-		nock('https://rest.nexmo.com')
-			.post('/sms/json?&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
-			.reply(200, {"message": "success"});
-		nock('https://rest.nexmo.com')
-			.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
-			.reply(200, {"message": "success"});
+		// nock('https://rest.nexmo.com')
+		// 	.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
+		// 	.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
 			.get('/priority?type=email')
 			.reply(200, ["nexmo", "twilio"]);
