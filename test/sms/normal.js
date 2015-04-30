@@ -7,7 +7,7 @@ describe('when sms services up', function(){
 	it('should send with twilio when suggested first', function(done){
 		nock.cleanAll()
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/sms')
 			.reply(200, {
 				"twilio": {
 					"account_sid": "sldkfjdslkjf",
@@ -25,7 +25,7 @@ describe('when sms services up', function(){
 			.post('')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/sms')
 			.reply(200, [ "twilio", "nexmo"]);
 
 		client.initialize()
@@ -40,7 +40,7 @@ describe('when sms services up', function(){
 	it('should send with nexmo when suggested first', function(done){
 		nock.cleanAll()
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/sms')
 			.reply(200, {
 				"parse": {
 					"api_key": "sldkfjdslkjf",
@@ -52,7 +52,7 @@ describe('when sms services up', function(){
 			.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/sms')
 			.reply(200, ["nexmo", "twilio"]);
 
 		client.initialize()

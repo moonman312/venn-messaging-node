@@ -5,7 +5,7 @@ var emailClient = require("../../lib/index").Email;
 describe('sending an email', function(){
 	nock.cleanAll()
 	nock('https://api.getvenn.io/v1')
-		.get('/keys?type=email')
+		.get('/keys/email')
 		.reply(200, {
 			"sendgrid": {
 				"api_user": process.env.SENDGRID_API_USER,
@@ -24,7 +24,7 @@ describe('sending an email', function(){
 
 		it('should send with sendgrid when mandrill and mailgun are down', function(done){
 			nock('https://api.getvenn.io/v1')
-				.get('/priority?type=email')
+				.get('/priority/email')
 				.reply(200, [ "mandrill", "mailgun", "sendgrid" ]);
 
 			nock('https://mandrillapp.com/api/1.0')
@@ -46,7 +46,7 @@ describe('sending an email', function(){
 
 		it('should send with mandrill when sendgrid is down', function(done){
 			nock('https://api.getvenn.io/v1')
-				.get('/keys?type=email')
+				.get('/keys/email')
 				.reply(200, {
 					"sendgrid": {
 						"api_user": process.env.SENDGRID_API_USER,
@@ -57,7 +57,7 @@ describe('sending an email', function(){
 					}
 				});
 			nock('https://api.getvenn.io/v1')
-				.get('/priority?type=email')
+				.get('/priority/email')
 				.reply(200, [ "sendgrid", "mandrill" ]);
 			nock('https://mandrillapp.com/api/1.0')
 				.post('/messages/send.json')
@@ -75,7 +75,7 @@ describe('sending an email', function(){
 		it('should send with mailgun when sendgrid is down', function(done){
 			nock.cleanAll()
 			nock('https://api.getvenn.io/v1')
-				.get('/keys?type=email')
+				.get('/keys/email')
 				.reply(200, {
 					"sendgrid": {
 						"api_user": process.env.SENDGRID_API_USER,
@@ -90,7 +90,7 @@ describe('sending an email', function(){
 					}
 				});
 			nock('https://api.getvenn.io/v1')
-				.get('/priority?type=email')
+				.get('/priority/email')
 				.reply(200, [ "sendgrid", "mailgun" ]);
 			nock('https://api.sendgrid.com/api')
 				.post('/mail.send.json')

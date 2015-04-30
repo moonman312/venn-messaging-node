@@ -1,21 +1,21 @@
 {
-  "name": "venn-email",
-  "version": "0.4.0",
-  "description": "Venn Email Redundancy Package, including Mailgun, Sendgrid, and Mandrill",
+  "name": "venn-messaging",
+  "version": "0.1.2",
+  "description": "Venn Messaging Redundancy Package, including Push Notifications, Email and SMS",
   "main": "lib/index.js",
   "scripts": {
     "test": "mocha"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/VennHQ/venn-email-node.git"
+    "url": "https://github.com/VennHQ/venn-messaging-node.git"
   },
   "author": "Tim Giblin",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/VennHQ/venn-email-node/issues"
+    "url": "https://github.com/VennHQ/venn-messaging-node/issues"
   },
-  "homepage": "https://github.com/VennHQ/venn-email-node",
+  "homepage": "https://github.com/VennHQ/venn-messaging-node",
   "dependencies": {
     "async": "^0.9.0",
     "debug": "^2.1.2",

@@ -7,7 +7,7 @@ describe('sending an sms should fallback', function(){
 		it('to nexmo when twilio down', function(done){
 			nock.cleanAll()
 			nock('https://api.getvenn.io/v1')
-				.get('/keys?type=email')
+				.get('/keys/sms')
 				.reply(200, {
 					"twilio": {
 						"account_sid": "sldkfjdslkjf",
@@ -19,7 +19,7 @@ describe('sending an sms should fallback', function(){
 					}
 				});
 			nock('https://api.getvenn.io/v1')
-				.get('/priority?type=email')
+				.get('/priority/sms')
 				.reply(200, [ "twilio", "nexmo"]);
 
 			nock('https://api.twilio.com:443')
@@ -39,7 +39,7 @@ describe('sending an sms should fallback', function(){
 		it('to twilio when nexmo down', function(done){
 			nock.cleanAll()
 			nock('https://api.getvenn.io/v1')
-				.get('/keys?type=email')
+				.get('/keys/sms')
 				.reply(200, {
 					"twilio": {
 						"account_sid": "sldkfjdslkjf",
@@ -51,7 +51,7 @@ describe('sending an sms should fallback', function(){
 					}
 				});
 			nock('https://api.getvenn.io/v1')
-				.get('/priority?type=email')
+				.get('/priority/sms')
 				.reply(200, [ "nexmo", "twilio"]);
 
 			nock('https://api.twilio.com:443')

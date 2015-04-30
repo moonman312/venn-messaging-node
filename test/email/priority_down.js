@@ -7,7 +7,7 @@ describe('email should still send even if priority endpoint down', function(){
 
 	it('should send with sendgrid suggested first', function(done){
 	nock('https://api.getvenn.io/v1')
-		.get('/keys?type=email')
+		.get('/keys/email')
 		.reply(200, {
 			"sendgrid": {
 				"api_user": process.env.SENDGRID_API_USER,
@@ -24,7 +24,7 @@ describe('email should still send even if priority endpoint down', function(){
 			.post('/mail.send.json')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(500, {});
 		emailClient.initialize(process.env.VENN_API_KEY)
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){

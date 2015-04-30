@@ -7,7 +7,7 @@ describe('when email services up', function(){
 	it('should send with mandrill when suggested first', function(done){
 		nock.cleanAll()
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/email')
 			.reply(200, {
 				"sendgrid": {
 					"api_user": "sldkfjdslkjf",
@@ -24,7 +24,7 @@ describe('when email services up', function(){
 			.post('/mail.send.json')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(200, [ "mandrill", "sendgrid"]);
 
 		emailClient.initialize()
@@ -37,7 +37,7 @@ describe('when email services up', function(){
 
 	it('should send with sendgrid when suggested first', function(done){
 	nock('https://api.getvenn.io/v1')
-		.get('/keys?type=email')
+		.get('/keys/email')
 		.reply(200, {
 			"sendgrid": {
 				"api_user": process.env.SENDGRID_API_USER,
@@ -54,7 +54,7 @@ describe('when email services up', function(){
 			.post('/mail.send.json')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(200, [ "sendgrid", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
@@ -65,7 +65,7 @@ describe('when email services up', function(){
 
 	it('should send with mailgun when suggested first', function(done){
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/email')
 			.reply(200, {
 				"sendgrid": {
 					"api_user": process.env.SENDGRID_API_USER,
@@ -92,7 +92,7 @@ describe('when email services up', function(){
 		// 	return '/';
 		// }).get('/').reply(200, {});
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(200, [ "mailgun", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
@@ -103,7 +103,7 @@ describe('when email services up', function(){
 
 	it('should send with messagebus when suggested first', function(done){
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/email')
 			.reply(200, {
 				"sendgrid": {
 					"api_user": process.env.SENDGRID_API_USER,
@@ -124,7 +124,7 @@ describe('when email services up', function(){
 			.post('/messages/send')
 			.reply(202, require("../fixtures/messagebus_response") );
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(200, [ "messagebus", "mandrill" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
@@ -136,7 +136,7 @@ describe('when email services up', function(){
 
 	it('should send with postmark when suggested first', function(done){
 		nock('https://api.getvenn.io/v1')
-			.get('/keys?type=email')
+			.get('/keys/email')
 			.reply(200, {
 				"sendgrid": {
 					"api_user": process.env.SENDGRID_API_USER,
@@ -153,7 +153,7 @@ describe('when email services up', function(){
 			.post('/email')
 			.reply(200, {"message": "success"} );
 		nock('https://api.getvenn.io/v1')
-			.get('/priority?type=email')
+			.get('/priority/email')
 			.reply(200, [ "postmark", "messagebus" ]);
 		emailClient.initialize(process.env.VENN_API_KEY)
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
