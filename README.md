@@ -96,6 +96,7 @@ DEBUG=email node examples/example.js
 ##### Run Tests
 ###### Export api keys
 ```bash
+export VENN_API_KEY=""
 mocha
 ```
 
