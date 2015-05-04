@@ -43,19 +43,23 @@ describe('when sms services up', function(){
 			.get('/keys/sms')
 			.reply(200, {
 				"parse": {
-					"api_key": "sldkfjdslkjf",
-					"app_id": "sldkfjdslkjf"
+					"api_key": "nsldkfjdslkjf",
+					"app_id": "nsldkfjdslkjf"
+				},
+				"nexmo": {
+					"api_key": "nsldkfjdslkjf",
+					"api_secret": "nsldkfjdslkjf",
+					"from_phone": "15139453300"
 				}
 			});
-		// nock.enableNetConnect('api.twilio.com');
 		nock('https://rest.nexmo.com')
-			.post('/sms/json?from=%2B15138853322&to=%2B15138853322&text=message-13579&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
+			.post('/sms/json?from=15139453300&to=+15138853322&text=message-13579&api_key=nsldkfjdslkjf&api_secret=nsldkfjdslkjf')
 			.reply(200, {"message": "success"});
 		nock('https://api.getvenn.io/v1')
 			.get('/priority/sms')
 			.reply(200, ["nexmo", "twilio"]);
 
-		client.initialize()
+		client.initialize("test123")
 		client.send({from:"+15138853322", to:"+15138853322", message:"message-13579"}, function(err, result){
 			assert.equal(result.service, "nexmo");
 			assert.equal(Object.keys(client.services).length, 2);

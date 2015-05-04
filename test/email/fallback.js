@@ -3,26 +3,26 @@ var nock = require("nock")
 var emailClient = require("../../lib/index").Email;
 
 describe('sending an email', function(){
-	nock.cleanAll()
-	nock('https://api.getvenn.io/v1')
-		.get('/keys/email')
-		.reply(200, {
-			"sendgrid": {
-				"api_user": process.env.SENDGRID_API_USER,
-				"api_key": process.env.SENDGRID_API_KEY
-			},
-			"mandrill": {
-				"api_key": process.env.MANDRILL_API_KEY
-			},
-			"mailgun": {
-				"domain": process.env.MAILGUN_DOMAIN,
-				"api_key": process.env.MAILGUN_API_KEY
-			}
-		});
 
 	describe('when services are down', function(){
 
 		it('should send with sendgrid when mandrill and mailgun are down', function(done){
+			nock.cleanAll()
+			nock('https://api.getvenn.io/v1')
+				.get('/keys/email')
+				.reply(200, {
+					"sendgrid": {
+						"api_user": process.env.SENDGRID_API_USER,
+						"api_key": process.env.SENDGRID_API_KEY
+					},
+					"mandrill": {
+						"api_key": process.env.MANDRILL_API_KEY
+					},
+					"mailgun": {
+						"domain": process.env.MAILGUN_DOMAIN,
+						"api_key": process.env.MAILGUN_API_KEY
+					}
+				});
 			nock('https://api.getvenn.io/v1')
 				.get('/priority/email')
 				.reply(200, [ "mandrill", "mailgun", "sendgrid" ]);
@@ -54,6 +54,10 @@ describe('sending an email', function(){
 					},
 					"mandrill": {
 						"api_key": process.env.MANDRILL_API_KEY
+					},
+					"mailgun": {
+						"domain": process.env.MAILGUN_DOMAIN,
+						"api_key": process.env.MAILGUN_API_KEY
 					}
 				});
 			nock('https://api.getvenn.io/v1')

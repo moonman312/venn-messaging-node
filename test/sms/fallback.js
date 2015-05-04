@@ -14,8 +14,9 @@ describe('sending an sms should fallback', function(){
 						"auth_token": "sldkfjdslkjf"
 					},
 					"nexmo": {
-						"api_key": "sldkfjdslkjf",
-						"api_secret": "sldkfjdslkjf"
+						"api_key": "nsldkfjdslkjf",
+						"api_secret": "nsldkfjdslkjf",
+						"from_phone": "15139453300"
 					}
 				});
 			nock('https://api.getvenn.io/v1')
@@ -26,7 +27,7 @@ describe('sending an sms should fallback', function(){
 				.post('/2010-04-01/Accounts/sldkfjdslkjf/Messages.json')
 				.reply(500, [{"status": "sent"}] );
 			nock('https://rest.nexmo.com')
-				.post('/sms/json?from=from%40email.com&to=testy%40email.com&text=message-1&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
+				.post('/sms/json?from=15139453300&to=testy@email.com&text=message-1&api_key=nsldkfjdslkjf&api_secret=nsldkfjdslkjf')
 				.reply(200, {"message": "success"});
 
 			emailClient.initialize(process.env.VENN_API_KEY)
@@ -46,8 +47,9 @@ describe('sending an sms should fallback', function(){
 						"auth_token": "sldkfjdslkjf"
 					},
 					"nexmo": {
-						"api_key": "sldkfjdslkjf",
-						"api_secret": "sldkfjdslkjf"
+						"api_key": "nsldkfjdslkjf",
+						"api_secret": "nsldkfjdslkjf",
+						"from_phone": "15139453300"
 					}
 				});
 			nock('https://api.getvenn.io/v1')
@@ -58,7 +60,7 @@ describe('sending an sms should fallback', function(){
 				.post('/2010-04-01/Accounts/sldkfjdslkjf/Messages.json')
 				.reply(200, [{"status": "sent"}] );
 			nock('https://rest.nexmo.com')
-				.post('/sms/json?from=from%40email.com&to=testy%40email.com&text=message-1&api_key=sldkfjdslkjf&api_secret=sldkfjdslkjf')
+				.post('/sms/json?from=15139453300&to=testy@email.com&text=message-1&api_key=nsldkfjdslkjf&api_secret=nsldkfjdslkjf')
 				.reply(400, {
 				  "message-count":"1",
 				  "status":"2",

@@ -1,8 +1,8 @@
 var assert = require("assert")
 var nock = require("nock")
-var client = require("../../lib/index").SMS;
+var client = require("../../lib/index").Push;
 
-describe('when sms services up', function(){
+describe('when push services up', function(){
 
 	it('should send with parse when suggested first', function(done){
 		nock.cleanAll()
