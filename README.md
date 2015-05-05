@@ -82,9 +82,9 @@ vennSms.send(data, function(err, result){
 npm install
 ```
 
-##### Run Example
+##### Run Example (need Venn login and email services turned on)
 ```
-node examples/example.js
+VENN_API_KEY="h41fa6602663b30c78b9c339" node examples/example.js
 ```
 
 ##### Run Example (with debug logging)
