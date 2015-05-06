@@ -9,5 +9,6 @@ var data = {
 	message: "message-1"
 }
 Email.send(data, function(err, result){
+	console.info("error:", err);
 	console.info("sent with:", result);
 })
