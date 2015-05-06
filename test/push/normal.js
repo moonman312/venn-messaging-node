@@ -51,7 +51,6 @@ describe('when push services up', function(){
 
 		client.initialize()
 		client.send({deviceToken:"12345", deviceType:"ios", message:"push message 29449"}, function(err, result){
-			console.log("result", result)
 			assert.equal(result.service, "pushwoosh");
 			assert.equal(Object.keys(client.services).length, 1);
 			done()
