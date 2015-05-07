@@ -55,7 +55,7 @@ describe('email services should provide feedback when user exceeds sending limit
 			.get('/keys/email')
 			.reply(200, {
 			"mandrill": {
-					"api_key": 'key'
+				"api_key": 'key'
 			}
 		});
 		nock('https://mandrillapp.com/api/1.0')
@@ -64,6 +64,27 @@ describe('email services should provide feedback when user exceeds sending limit
 		nock('https://api.getvenn.io/v1')
 			.get('/priority/email')
 			.reply(200, ["mandrill"]);
+		emailClient.initialize()
+		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
+			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			done()
+		})
+	})
+
+	it('should catch a limit exceeded error from Postmark', function(done) {
+		nock('https://api.getvenn.io/v1')
+			.get('/keys/email')
+			.reply(200, {
+			"postmark": {
+				"server_key": "123"
+			}
+		});
+		nock('https://api.postmarkapp.com').filteringRequestBody(/.*/, '*')
+			.post('/email')
+			.reply(422, {"ErrorCode": 405, "Message": "Some explanation."} );
+		nock('https://api.getvenn.io/v1')
+			.get('/priority/email')
+			.reply(200, ["postmark"]);
 		emailClient.initialize()
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
 			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
