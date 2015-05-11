@@ -1,7 +1,7 @@
 var assert = require("assert")
 var nock = require("nock")
 var client = require("../../lib/index").SMS;
-var ErrorCode = require('../../lib/models/messaging_error_code');
+var StatusCode = require('../../lib/models/messaging_status_code');
 
 describe('sms services should provide feedback when user exceeds sending limit', function() {
 
@@ -24,7 +24,7 @@ describe('sms services should provide feedback when user exceeds sending limit',
 
 		client.initialize()
 		client.send({from:"+15138853322", to:"+15138853322", message:"message-13579"}, function(err, result){
-			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
 	})
