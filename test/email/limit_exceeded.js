@@ -1,7 +1,7 @@
 var assert = require('assert');
 var nock = require('nock');
 var emailClient = require("../../lib/index").Email;
-var ErrorCode = require('../../lib/models/messaging_error_code');
+var StatusCode = require('../../lib/models/messaging_status_code');
 
 describe('email services should provide feedback when user exceeds sending limit', function() {
 
@@ -22,7 +22,7 @@ describe('email services should provide feedback when user exceeds sending limit
 			.reply(200, ["sendgrid"]);
 		emailClient.initialize()
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
-			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
 	})
@@ -45,7 +45,7 @@ describe('email services should provide feedback when user exceeds sending limit
 			.reply(200, ["mailgun"]);
 		emailClient.initialize()
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
-			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
 	})
@@ -66,7 +66,7 @@ describe('email services should provide feedback when user exceeds sending limit
 			.reply(200, ["mandrill"]);
 		emailClient.initialize()
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
-			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
 	})
@@ -87,7 +87,7 @@ describe('email services should provide feedback when user exceeds sending limit
 			.reply(200, ["postmark"]);
 		emailClient.initialize()
 		emailClient.send({from:"from@email.com", to:"testy@email.com", subject:"subject-1", message:"message-1"}, function(err, result){
-			assert.equal(this.sendLog[0].code, ErrorCode.LIMIT_EXCEEDED);
+			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
 	})
