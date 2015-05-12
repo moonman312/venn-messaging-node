@@ -11,7 +11,7 @@ npm install venn-messaging
 ```
 
 ## Functions
-##### initialize(api_key, callback)
+##### initialize(api_key)
 |params         | type   |    description      | example                    |
 |---------------| ----   |   --------------------------- | ------------     |
 |api_key        | String |   Venn API Key    | 64d2fa24h3f6f7cc61asp3e8         |

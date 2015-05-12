@@ -23,7 +23,7 @@ describe('sms services should provide feedback when user exceeds sending limit',
 			.reply(200, ["twilio"]);
 
 		client.initialize()
-		client.send({from:"+15138853322", to:"+15138853322", message:"message-13579"}, function(err, result){
+		client.send({from:"15138853322", to:"15138853322", message:"message-13579"}, function(err, result){
 			assert.equal(this.sendLog[0].code, StatusCode.LIMIT_EXCEEDED);
 			done()
 		})
