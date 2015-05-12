@@ -29,7 +29,7 @@ describe('when sms services up', function(){
 			.reply(200, [ "twilio", "nexmo"]);
 
 		client.initialize()
-		client.send({from:"+15138853322", to:"+15138853322", message:"message-13579"}, function(err, result){
+		client.send({to:"+15138853322", message:"message-13579"}, function(err, result){
 			assert.equal(result.service, "twilio");
 			assert.equal(Object.keys(client.services).length, 2);
 			done()
