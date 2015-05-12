@@ -104,7 +104,6 @@ describe('twilio sms', function(){
 
 			client.initialize()
 			client.send({to:"15138853322", message:"message-13579"}, function(err, result){
-				console.log(err, "---", result)
 				assert.equal(result.service, undefined);
 				done()
 			})
