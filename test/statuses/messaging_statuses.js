@@ -12,15 +12,16 @@ describe('when creating a new instance of MessagingServiceStatus', function () {
 	})
 
 	it('should have all MessagingStatus fields', function (done) {
-		assert.equal('code' in objects.twilio, true);
-		assert.equal('service' in objects.twilio, true);
-		assert.equal('message' in objects.twilio, true);
 		assert.equal('StatusCodes' in objects.twilio, true);
+		assert.equal('state' in objects.twilio, true);
+		assert.equal('code' in objects.twilio.state, true);
+		assert.equal('service' in objects.twilio.state, true);
+		assert.equal('message' in objects.twilio.state, true);
 		done();
 	})
 
 	it('should have service property defined', function (done) {
-		assert.equal(objects.twilio.service, 'twilio');
+		assert.equal(objects.twilio.state.service, 'twilio');
 		done();
 	})
 
@@ -43,15 +44,16 @@ describe('when creating a new instance of MessagingUserStatus', function () {
 	})
 
 	it('should have all MessagingStatus fields', function (done) {
-		assert.equal('code' in objects.twilio, true);
-		assert.equal('service' in objects.twilio, true);
-		assert.equal('message' in objects.twilio, true);
 		assert.equal('StatusCodes' in objects.twilio, true);
+		assert.equal('state' in objects.twilio, true);
+		assert.equal('code' in objects.twilio.state, true);
+		assert.equal('service' in objects.twilio.state, true);
+		assert.equal('message' in objects.twilio.state, true);
 		done();
 	})
 
 	it('should have service property defined', function (done) {
-		assert.equal(objects.twilio.service, 'twilio');
+		assert.equal(objects.twilio.state.service, 'twilio');
 		done();
 	})
 
