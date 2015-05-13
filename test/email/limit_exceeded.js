@@ -1,7 +1,7 @@
 var assert = require('assert');
 var nock = require('nock');
 var emailClient = require("../../lib/index").Email;
-var StatusCode = require('../../lib/models/messaging_status_code');
+var StatusCode = require('../../lib/models/messaging_status_codeOLD');
 
 describe('email services should provide feedback when user exceeds sending limit', function() {
 
