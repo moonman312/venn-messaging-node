@@ -1,7 +1,8 @@
 var assert = require("assert")
 var nock = require("nock")
 var client = require("../../lib/index").SMS;
-var StatusCode = require('../../lib/models/messaging_status_code');
+var MessagingServiceStatus = require('../../lib/models/messaging_service_status');
+var StatusCode = (new MessagingServiceStatus()).StatusCodes;
 
 describe('sms services should provide feedback when user exceeds sending limit', function() {
 
