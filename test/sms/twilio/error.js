@@ -67,6 +67,7 @@ describe('receive error from twilio', function () {
 		client.send({to:"15138853322923042903432", from: "15135549122", message:"message-13579"}, function(err, result){
 			assert.notEqual(err, undefined);
 			assert.equal(result, undefined);
+			assert.equal(err.code, UserCodes.INVALID);
 			done()
 		})
 	})
@@ -99,6 +100,7 @@ describe('receive error from twilio', function () {
 		client.send({to:"15135549122", from: "2309423098493840923", message:"message-13579"}, function(err, result){
 			assert.notEqual(err, undefined);
 			assert.equal(result, undefined);
+			assert.equal(err.code, UserCodes.INVALID);
 			done()
 		})
 	})
